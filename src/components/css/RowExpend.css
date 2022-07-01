@@ -1,0 +1,21 @@
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 16px;
+    background-color: #EAE6E5;
+    margin: 10px;
+
+    /*animation*/
+    transition: transform 100ms ease-in;
+    cursor: pointer;
+}
+
+.row:hover {
+    transform: scale(1.07);
+}
+
+.row__left {
+    color: #5B9279;
+}

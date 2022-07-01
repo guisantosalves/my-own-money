@@ -1,0 +1,23 @@
+.home {
+    display: flex;
+    height: 90vh;
+}
+
+
+
+.home__left {
+    flex: 0.6;
+
+}
+
+.home__right {
+    flex: 0.4;
+    overflow: scroll;
+
+}
+
+.home__rightListOfThings {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}

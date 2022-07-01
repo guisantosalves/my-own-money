@@ -1,12 +1,13 @@
 import React from "react";
 import "./css/Header.css";
-import { Avatar } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import ChairIcon from "@mui/icons-material/Chair";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
+import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -61,7 +62,9 @@ function Header() {
 
 
         <div className="header_right">
-          <Avatar src="https://i.pinimg.com/564x/bd/ac/a5/bdaca5afbf28608dd2305bece054c424.jpg" />
+          <IconButton>
+            <AddIcon fontSize="large"/>
+          </IconButton>
           <h3>Guilherme santos</h3>
         </div>
 
