@@ -1,0 +1,38 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    background-color: #EAE6E5;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.header__left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header__left > img {
+    width: 50px;
+    object-fit: contain;
+}
+
+.header__leftInformation{
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+}
+
+.header__leftInformation > h3{
+    padding-bottom: 8px;
+    color: #5B9279;
+}
+
+.header__leftInformation > p {
+    color: #12130F;
+}
+
+.header__center {
+    display: flex;
+}
