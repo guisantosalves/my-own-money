@@ -70,7 +70,7 @@ button {
 }
 
 .header__centerButtons:hover > .MuiSvgIcon-root{
-    color: #2e81f4;
+    color: #12130F !important;
 }
 
 .header_right {

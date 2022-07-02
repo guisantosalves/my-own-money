@@ -10,11 +10,41 @@ import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Modal from "react-modal";
+
+//style for the model
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 
 function Header() {
   const Location = useLocation();
 
   const CurrentPath = Location.pathname;
+
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <div className="header">
@@ -31,7 +61,6 @@ function Header() {
       </div>
 
       <div className="header__center">
-
         <Link to="/">
           <button
             className={`header__centerBtn ${
@@ -45,9 +74,11 @@ function Header() {
         </Link>
 
         <Link to="/food">
-          <button className={`header__centerBtn ${
+          <button
+            className={`header__centerBtn ${
               CurrentPath === "/food" ? `buttonActiveByPath` : ``
-            }`}>
+            }`}
+          >
             <div className="header__centerButtons">
               <FastfoodIcon fontSize="large" />
             </div>
@@ -55,9 +86,11 @@ function Header() {
         </Link>
 
         <Link to="/pleasure">
-          <button className={`header__centerBtn ${
+          <button
+            className={`header__centerBtn ${
               CurrentPath === "/pleasure" ? `buttonActiveByPath` : ``
-            }`}>
+            }`}
+          >
             <div className="header__centerButtons">
               <ChairIcon fontSize="large" />
             </div>
@@ -65,9 +98,11 @@ function Header() {
         </Link>
 
         <Link to="/investment">
-          <button className={`header__centerBtn ${
+          <button
+            className={`header__centerBtn ${
               CurrentPath === "/investment" ? `buttonActiveByPath` : ``
-            }`}>
+            }`}
+          >
             <div className="header__centerButtons">
               <RocketLaunchIcon fontSize="large" />
             </div>
@@ -75,9 +110,11 @@ function Header() {
         </Link>
 
         <Link to="/transport">
-          <button className={`header__centerBtn ${
+          <button
+            className={`header__centerBtn ${
               CurrentPath === "/transport" ? `buttonActiveByPath` : ``
-            }`}>
+            }`}
+          >
             <div className="header__centerButtons">
               <DirectionsBusIcon fontSize="large" />
             </div>
@@ -85,23 +122,43 @@ function Header() {
         </Link>
 
         <Link to="/other">
-          <button className={`header__centerBtn ${
+          <button
+            className={`header__centerBtn ${
               CurrentPath === "/other" ? `buttonActiveByPath` : ``
-            }`}>
+            }`}
+          >
             <div className="header__centerButtons">
               <AutoAwesomeMotionIcon fontSize="large" />
             </div>
           </button>
         </Link>
-
       </div>
 
       <div className="header_right">
-        <IconButton>
+        <IconButton onClick={openModal}>
           <AddIcon fontSize="large" />
         </IconButton>
         <h3>Guilherme santos</h3>
       </div>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <button onClick={closeModal}>close</button>
+        <div>I am a modal</div>
+        <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form>
+      </Modal>
     </div>
   );
 }
