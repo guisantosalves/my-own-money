@@ -83,3 +83,55 @@ button {
     font-size: 20px;
     margin-left: 8px;
 }
+
+/* Modal settings */
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: lightgray;
+    background-color: lightgray;
+}
+
+.modal__input {
+   display: flex;
+   align-items: center;
+}
+
+.modal__input > h3 {
+    color: #8F8073;
+    margin-right: 16px;
+}
+
+.modal__inputIptChange > input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width: 100%;
+}
+
+.modal__inputIptChange {
+    background-color: #eff2f5;
+    padding: 10px;
+    border-radius: 999px;
+    width: 100%;
+}
+
+.modal__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal__closeBtn{
+    margin-top: 16px;
+    padding: 10px 30px;
+    border-radius: 999px;
+    background-color: #af5d4a;
+}
+
+.modal__saveBtn {
+    margin-top: 16px;
+    padding: 10px 30px;
+    border-radius: 999px;
+    background-color: #5B9279;
+}

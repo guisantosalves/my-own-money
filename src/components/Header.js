@@ -8,9 +8,12 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import { IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Modal from "react-modal";
+
 
 //style for the model
 const customStyles = {
@@ -21,6 +24,7 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    width: "500px"
   },
 };
 
@@ -30,16 +34,10 @@ function Header() {
 
   const CurrentPath = Location.pathname;
 
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
     setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
   }
 
   function closeModal() {
@@ -143,21 +141,35 @@ function Header() {
 
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
+        <h2 style={{color: "#5B9279"}}>Add Spent/Gain</h2>
+        <hr />
         <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
+          
+          <div className="modal__input">
+            <h3>Value: </h3>
+            <div className="modal__inputIptChange">
+              <input type="text" placeholder="Ex: 1900,99"/>
+            </div>
+          </div>
+
         </form>
+
+        <div className="modal__buttons">
+
+          <button onClick={closeModal} className="modal__closeBtn">
+            <CloseIcon fontSize="medium"/>
+          </button>
+
+          <button onClick={closeModal} className="modal__saveBtn">
+            <CheckIcon fontSize="medium"/>
+          </button>
+          
+        </div>
+        
       </Modal>
     </div>
   );
