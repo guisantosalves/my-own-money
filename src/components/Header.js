@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./css/Header.css";
 import AddIcon from "@mui/icons-material/Add";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
@@ -12,9 +12,6 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function Header() {
-
-  const [header__centerBtnActive, setHeader__centerBtnActive] = useState(false);
-
   const Location = useLocation();
 
   const CurrentPath = Location.pathname;
@@ -34,8 +31,13 @@ function Header() {
       </div>
 
       <div className="header__center">
+
         <Link to="/">
-          <button className={`header__centerBtn ${CurrentPath == "/" ? `buttonActiveByPath` : ``}`}>
+          <button
+            className={`header__centerBtn ${
+              CurrentPath === "/" ? `buttonActiveByPath` : ``
+            }`}
+          >
             <div className="header__centerButtons">
               <AttachMoneyIcon fontSize="large" />
             </div>
@@ -43,34 +45,55 @@ function Header() {
         </Link>
 
         <Link to="/food">
-          <div className="header__centerButtons">
-            <FastfoodIcon fontSize="large" />
-          </div>
+          <button className={`header__centerBtn ${
+              CurrentPath === "/food" ? `buttonActiveByPath` : ``
+            }`}>
+            <div className="header__centerButtons">
+              <FastfoodIcon fontSize="large" />
+            </div>
+          </button>
         </Link>
 
         <Link to="/pleasure">
-          <div className="header__centerButtons">
-            <ChairIcon fontSize="large" />
-          </div>
+          <button className={`header__centerBtn ${
+              CurrentPath === "/pleasure" ? `buttonActiveByPath` : ``
+            }`}>
+            <div className="header__centerButtons">
+              <ChairIcon fontSize="large" />
+            </div>
+          </button>
         </Link>
 
         <Link to="/investment">
-          <div className="header__centerButtons">
-            <RocketLaunchIcon fontSize="large" />
-          </div>
+          <button className={`header__centerBtn ${
+              CurrentPath === "/investment" ? `buttonActiveByPath` : ``
+            }`}>
+            <div className="header__centerButtons">
+              <RocketLaunchIcon fontSize="large" />
+            </div>
+          </button>
         </Link>
 
         <Link to="/transport">
-          <div className="header__centerButtons">
-            <DirectionsBusIcon fontSize="large" />
-          </div>
+          <button className={`header__centerBtn ${
+              CurrentPath === "/transport" ? `buttonActiveByPath` : ``
+            }`}>
+            <div className="header__centerButtons">
+              <DirectionsBusIcon fontSize="large" />
+            </div>
+          </button>
         </Link>
 
         <Link to="/other">
-          <div className="header__centerButtons">
-            <AutoAwesomeMotionIcon fontSize="large" />
-          </div>
+          <button className={`header__centerBtn ${
+              CurrentPath === "/other" ? `buttonActiveByPath` : ``
+            }`}>
+            <div className="header__centerButtons">
+              <AutoAwesomeMotionIcon fontSize="large" />
+            </div>
+          </button>
         </Link>
+
       </div>
 
       <div className="header_right">
