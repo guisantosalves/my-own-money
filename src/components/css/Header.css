@@ -56,6 +56,19 @@
     align-items: center;
 }
 
+button {
+    border: none;
+    background-color: inherit;
+    outline: inherit;
+    cursor: pointer;
+}
+
+.buttonActiveByPath {
+    background-color: #eff2f5;
+    border-radius: 10px;
+    align-items: center;
+}
+
 .header__centerButtons:hover > .MuiSvgIcon-root{
     color: #2e81f4;
 }

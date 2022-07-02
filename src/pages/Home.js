@@ -10,6 +10,7 @@ function Home() {
       <div className="home__left">
 
         <div className="home__graphs">
+
           <div className="home__leftGraphOne">
             <GraphOne />
           </div>
@@ -17,6 +18,7 @@ function Home() {
           <div className="home__leftGraphTwo">
             <GraphTwo />
           </div>
+          
         </div>
 
       </div>
