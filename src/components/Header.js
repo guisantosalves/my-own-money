@@ -1,5 +1,7 @@
 import React from "react";
 import "./css/Header.css";
+
+//material UI
 import AddIcon from "@mui/icons-material/Add";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
@@ -8,26 +10,29 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import { IconButton } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
-import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from "@mui/icons-material/Close";
+import CheckIcon from "@mui/icons-material/Check";
+import { Checkbox } from "@mui/material";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+
+//router and modal
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Modal from "react-modal";
 
-
 //style for the model
 const customStyles = {
   content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: "500px"
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "500px",
   },
 };
-
 
 function Header() {
   const Location = useLocation();
@@ -145,31 +150,83 @@ function Header() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 style={{color: "#5B9279"}}>Add Spent/Gain</h2>
+        <h2 style={{ color: "#5B9279" }}>Add Spent/Gain</h2>
         <hr />
         <form>
-          
-          <div className="modal__input">
-            <h3>Value: </h3>
-            <div className="modal__inputIptChange">
-              <input type="text" placeholder="Ex: 1900,99"/>
+          <div className="container">
+            <div className="modal__inputVal">
+              <h3>Value: </h3>
+              <div className="modal__inputIptChange">
+                <input type="text" placeholder="Ex: 1900,99" />
+              </div>
+            </div>
+
+            <div className="modal__inputType">
+              <h3>Type: </h3>
+
+              <div className="modal__Types">
+                <div>
+                  <div className="type">
+                    <Checkbox
+                      icon={<BookmarkBorderIcon />}
+                      checkedIcon={<BookmarkIcon />}
+                      value="food"
+                    />
+                    <h3>Food</h3>
+                  </div>
+
+                  <div className="type">
+                    <Checkbox
+                      icon={<BookmarkBorderIcon />}
+                      checkedIcon={<BookmarkIcon />}
+                      value="pleasure"
+                    />
+                    <h3>Pleasure</h3>
+                  </div>
+
+                  <div className="type">
+                    <Checkbox
+                      icon={<BookmarkBorderIcon />}
+                      checkedIcon={<BookmarkIcon />}
+                      value="investment"
+                    />
+                    <h3>Investment</h3>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="type">
+                    <Checkbox
+                      icon={<BookmarkBorderIcon />}
+                      checkedIcon={<BookmarkIcon />}
+                      value="transport"
+                    />
+                    <h3>Transport</h3>
+                  </div>
+
+                  <div className="type">
+                    <Checkbox
+                      icon={<BookmarkBorderIcon />}
+                      checkedIcon={<BookmarkIcon />}
+                      value="other"
+                    />
+                    <h3>Other</h3>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
         </form>
 
         <div className="modal__buttons">
-
           <button onClick={closeModal} className="modal__closeBtn">
-            <CloseIcon fontSize="medium"/>
+            <CloseIcon fontSize="medium" />
           </button>
 
           <button onClick={closeModal} className="modal__saveBtn">
-            <CheckIcon fontSize="medium"/>
+            <CheckIcon fontSize="medium" />
           </button>
-          
         </div>
-        
       </Modal>
     </div>
   );
