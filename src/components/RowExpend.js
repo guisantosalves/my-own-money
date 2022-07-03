@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./css/RowExpend.css";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import ChairIcon from "@mui/icons-material/Chair";
@@ -11,23 +11,23 @@ function Row({ expend, expendType, timestamp }) {
     switch (expendType) {
       case "food":
         return <FastfoodIcon fontSize="large" />;
-        break;
 
       case "pleasure":
         return <ChairIcon fontSize="large" />;
-        break;
 
       case "investment":
         return <RocketLaunchIcon fontSize="large" />;
-        break;
 
       case "transport":
         return <DirectionsBusIcon fontSize="large" />;
-        break;
 
       case "other":
         return <AutoAwesomeMotionIcon fontSize="large" />;
-        break;
+
+      default: 
+        return(
+            <p>Something went wrong</p>
+        )
     }
   }
 
