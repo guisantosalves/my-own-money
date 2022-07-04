@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/Header.css";
 
 //material UI
@@ -40,6 +40,8 @@ function Header() {
   const CurrentPath = Location.pathname;
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  const [date, setDate] = useState("");
 
   function openModal() {
     setIsOpen(true);
@@ -217,6 +219,11 @@ function Header() {
             </div>
           </div>
         </form>
+
+        <div className="modal__datePicker">
+            <h3>Date: </h3>
+            <input type="date"/>
+        </div>
 
         <div className="modal__buttons">
           <button onClick={closeModal} className="modal__closeBtn">

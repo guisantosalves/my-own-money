@@ -159,3 +159,18 @@ hr {
     display: flex;
     align-items: center;
 }
+
+.modal__datePicker {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.modal__datePicker > h3 {
+    color: #8F8073;
+    margin-right: 16px;
+}
+
+.modal__datePicker > input{
+    padding: 8px;
+}
