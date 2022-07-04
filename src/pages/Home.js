@@ -1,52 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./css/Home.css";
 import Row from "../components/RowExpend";
 import GraphOne from "../components/GraphOne";
 import GraphTwo from "../components/GraphTwo";
 
+//firebase
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
+
 function Home() {
-  const [data, setData] = useState([
-    {
-      expend: 2548,
-      expendType: "food",
-      timestamp: "15:30",
-    },
-    {
-      expend: 4687,
-      expendType: "transport",
-      timestamp: "15:30",
-    },
-    {
-      expend: 8596,
-      expendType: "investment",
-      timestamp: "15:30",
-    },
-    {
-      expend: 8596,
-      expendType: "investment",
-      timestamp: "15:30",
-    },
-    {
-      expend: 8596,
-      expendType: "investment",
-      timestamp: "15:30",
-    },
-    {
-      expend: 8596,
-      expendType: "investment",
-      timestamp: "15:30",
-    },
-    {
-      expend: 4687,
-      expendType: "transport",
-      timestamp: "15:30",
-    },
-    {
-      expend: 4687,
-      expendType: "transport",
-      timestamp: "15:30",
-    },
-  ]);
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    
+    const qry = query(collection(db, "gasto"))
+    onSnapshot(qry, (result)=>{
+        
+      setData(result.docs.map((item, index)=>(
+        {
+          id: item.id,
+          data: item.data(),
+        }
+      )))
+    })
+
+  }, [data])
 
   return (
     <div className="home">
@@ -66,9 +44,10 @@ function Home() {
         <div className="home__rightListOfThings">
           {data.map((item, index) => (
             <Row
-              expend={item.expend}
-              expendType={item.expendType}
-              timestamp={item.timestamp}
+              key={item.id}
+              expend={item.data.expend}
+              expendType={item.data.expendType}
+              timestamp={item.data.date}
             />
           ))}
         </div>
