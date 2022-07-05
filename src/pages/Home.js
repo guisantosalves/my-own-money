@@ -22,6 +22,7 @@ function Home() {
           data: item.data(),
         }
       )))
+
     })
 
   }, [data])
