@@ -32,7 +32,7 @@ function Home() {
       <div className="home__left">
         <div className="home__graphs">
           <div className="home__leftGraphOne">
-            <GraphOne />
+            <GraphOne dataFromHome={data}/>
           </div>
 
           <div className="home__leftGraphTwo">
