@@ -62,11 +62,11 @@ function Home() {
   }, []);
 
   const datachart = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ["Food", "transport", "pleasure", "investment", "other"],
     datasets: [
       {
         label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        data: [somaFood, somaTransport, somaPleasure, somaInvestment, somaOther],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
