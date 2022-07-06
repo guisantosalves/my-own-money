@@ -7,6 +7,7 @@ import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 
 function Row({ expend, expendType, timestamp }) {
+
   function IconType() {
     switch (expendType) {
       case "food":

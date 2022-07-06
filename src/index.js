@@ -5,13 +5,38 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
+//context api settings
+import { StateProvider } from "./StateProvider";
+
+//reducer settings
+const initialState = {
+  expend: null,
+};
+
+const reducer = (state, action) => {
+
+  switch(action.type){
+
+    case "SET_EXPENDS":
+      return{
+        ...state,
+        expend: action.expend,
+      };
+
+    default:
+      return state;
+  }
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
+      <StateProvider reducer={reducer} initialState={initialState}>
         <App />
+      </StateProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
