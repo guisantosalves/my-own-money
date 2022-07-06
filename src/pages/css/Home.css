@@ -3,24 +3,18 @@
     height: 90vh;
 }
 
-
-
 .home__left {
     flex: 0.6;
 }
 
 .home__graphs {
     display: flex;
-    flex-direction: column;
     padding: 34px;
 }
 
 .home__leftGraphOne{
-    height: 40vh;
-}
-
-.home__leftGraphTwo{
-    height: 40vh;
+    height: 80vh;
+    width: 60vw;
 }
 
 .home__right {
