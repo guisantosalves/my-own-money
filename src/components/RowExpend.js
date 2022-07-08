@@ -6,8 +6,13 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import Close from "@mui/icons-material/Close";
+import { IconButton } from "@mui/material";
 
-function Row({ expend, expendType, timestamp }) {
+function Row({ id, expend, expendType, timestamp, deleted }) {
+
+  function gettingID(){
+    console.log(id)
+  }
 
   function IconType() {
     switch (expendType) {
@@ -26,10 +31,8 @@ function Row({ expend, expendType, timestamp }) {
       case "other":
         return <AutoAwesomeMotionIcon fontSize="large" />;
 
-      default: 
-        return(
-            <p>Something went wrong</p>
-        )
+      default:
+        return <p>Something went wrong</p>;
     }
   }
 
@@ -42,7 +45,9 @@ function Row({ expend, expendType, timestamp }) {
 
       <div className="row__right">
         {IconType()}
-        <Close fontSize="small"/>
+        <IconButton onClick={gettingID}>
+          <Close fontSize="large" />
+        </IconButton>
       </div>
     </div>
   );

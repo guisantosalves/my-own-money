@@ -19,3 +19,8 @@
 .row__left {
     color: #5B9279;
 }
+
+.row__right{
+    display: flex;
+    justify-content: center;
+}

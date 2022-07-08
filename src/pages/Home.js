@@ -106,9 +106,11 @@ function Home() {
           {data.map((item, index) => (
             <Row
               key={item.id}
+              id={item.id}
               expend={item.data.expend}
               expendType={item.data.expendType}
               timestamp={item.data.date}
+              deleted={item.data.deleted}
             />
           ))}
         </div>

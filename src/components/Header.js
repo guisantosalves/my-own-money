@@ -73,7 +73,8 @@ function Header() {
         await addDoc(collection(db, "gasto"), {
           expend: parseFloat(value),
           expendType: Checkboxvalue,
-          date: new Date(date)
+          date: new Date(date),
+          deleted: false
         })
 
     }catch(err){
