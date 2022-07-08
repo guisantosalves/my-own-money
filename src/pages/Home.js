@@ -7,7 +7,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 //firebase
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore";
 import { db } from "../firebase";
 
 //getting datalayer
@@ -28,7 +28,7 @@ function Home() {
   const [{ expend }, dispatch] = useStateValue();
 
   useEffect(() => {
-    const qry = query(collection(db, "gasto"));
+    const qry = query(collection(db, "gasto"), where("deleted", "!=", "true"));
 
     onSnapshot(qry, (result) => {
       setData(

@@ -5,6 +5,7 @@ import ChairIcon from "@mui/icons-material/Chair";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
+import Close from "@mui/icons-material/Close";
 
 function Row({ expend, expendType, timestamp }) {
 
@@ -39,7 +40,10 @@ function Row({ expend, expendType, timestamp }) {
         <p>Type of expense: {expendType}</p>
       </div>
 
-      <div className="row__right">{IconType()}</div>
+      <div className="row__right">
+        {IconType()}
+        <Close fontSize="small"/>
+      </div>
     </div>
   );
 }
