@@ -8,10 +8,29 @@ import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import Close from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
 
+//firebase
+import { db } from "../firebase";
+import { updateDoc, doc } from "firebase/firestore";
+
 function Row({ id, expend, expendType, timestamp, deleted }) {
 
-  function gettingID(){
-    console.log(id)
+  async function gettingID(e){
+    e.preventDefault();
+
+    try{
+      
+      //update doc -> first parameter doc and second the object that will go overwrite
+      await updateDoc(doc(db, "gasto", id), {
+        expend: expend,
+        expendType: expendType,
+        date: timestamp,
+        deleted: true,
+      })
+
+    }catch(err){
+      alert(err)
+    }
+    
   }
 
   function IconType() {
@@ -45,7 +64,7 @@ function Row({ id, expend, expendType, timestamp, deleted }) {
 
       <div className="row__right">
         {IconType()}
-        <IconButton onClick={gettingID}>
+        <IconButton onClick={(e)=>gettingID(e)}>
           <Close fontSize="large" />
         </IconButton>
       </div>

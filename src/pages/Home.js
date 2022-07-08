@@ -28,7 +28,8 @@ function Home() {
   const [{ expend }, dispatch] = useStateValue();
 
   useEffect(() => {
-    const qry = query(collection(db, "gasto"), where("deleted", "!=", "true"));
+    //collection, where, orderby
+    const qry = query(collection(db, "gasto"), where("deleted", "!=", true), orderBy('deleted', 'asc'));
 
     onSnapshot(qry, (result) => {
       setData(
@@ -87,6 +88,8 @@ function Home() {
       },
     ],
   };
+
+  console.log(data)
 
   return (
     <div className="home">
