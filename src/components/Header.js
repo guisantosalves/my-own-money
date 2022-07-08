@@ -53,11 +53,16 @@ function Header() {
 
   function closeModal() {
     setIsOpen(false);
+
+    //cleaning the values in the model
+    setDate("")
+    setValue("")
+    setCheckboxvalue("")
   }
 
   console.log("aqui é o value: ", value);
   console.log("aqui é o type of checkbox: ", Checkboxvalue);
-
+  console.log("aqui é a data: ", date)
   return (
     <div className="header">
       <div className="header__left">
@@ -241,7 +246,7 @@ function Header() {
 
         <div className="modal__datePicker">
             <h3>Date: </h3>
-            <input type="date"/>
+            <input type="date" onChange={e=>setDate(e.target.value)}/>
         </div>
 
         <div className="modal__buttons">
