@@ -43,6 +43,10 @@ function Header() {
 
   const [date, setDate] = useState("");
 
+  const [value, setValue] = useState();
+
+  const [Checkboxvalue, setCheckboxvalue] = useState("");
+
   function openModal() {
     setIsOpen(true);
   }
@@ -50,6 +54,9 @@ function Header() {
   function closeModal() {
     setIsOpen(false);
   }
+
+  console.log("aqui é o value: ", value);
+  console.log("aqui é o type of checkbox: ", Checkboxvalue);
 
   return (
     <div className="header">
@@ -159,7 +166,14 @@ function Header() {
             <div className="modal__inputVal">
               <h3>Value: </h3>
               <div className="modal__inputIptChange">
-                <input type="text" placeholder="Ex: 1900,99" />
+
+                <input 
+                  type="text" 
+                  placeholder="Ex: 1900,99" 
+                  value={value} 
+                  onChange={(e)=>setValue(e.target.value)}
+                />
+
               </div>
             </div>
 
@@ -173,6 +187,7 @@ function Header() {
                       icon={<BookmarkBorderIcon />}
                       checkedIcon={<BookmarkIcon />}
                       value="food"
+                      onChange={(e)=>setCheckboxvalue(e.target.value)}
                     />
                     <h3>Food</h3>
                   </div>
@@ -182,6 +197,7 @@ function Header() {
                       icon={<BookmarkBorderIcon />}
                       checkedIcon={<BookmarkIcon />}
                       value="pleasure"
+                      onChange={(e)=>setCheckboxvalue(e.target.value)}
                     />
                     <h3>Pleasure</h3>
                   </div>
@@ -191,6 +207,7 @@ function Header() {
                       icon={<BookmarkBorderIcon />}
                       checkedIcon={<BookmarkIcon />}
                       value="investment"
+                      onChange={(e)=>setCheckboxvalue(e.target.value)}
                     />
                     <h3>Investment</h3>
                   </div>
@@ -202,6 +219,7 @@ function Header() {
                       icon={<BookmarkBorderIcon />}
                       checkedIcon={<BookmarkIcon />}
                       value="transport"
+                      onChange={(e)=>setCheckboxvalue(e.target.value)}
                     />
                     <h3>Transport</h3>
                   </div>
@@ -211,6 +229,7 @@ function Header() {
                       icon={<BookmarkBorderIcon />}
                       checkedIcon={<BookmarkIcon />}
                       value="other"
+                      onChange={(e)=>setCheckboxvalue(e.target.value)}
                     />
                     <h3>Other</h3>
                   </div>
