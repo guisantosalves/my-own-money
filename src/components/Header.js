@@ -21,6 +21,10 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Modal from "react-modal";
 
+//using firebase
+import { db } from "../firebase";
+import { collection,  addDoc} from "firebase/firestore";
+
 //style for the model
 const customStyles = {
   content: {
@@ -43,7 +47,7 @@ function Header() {
 
   const [date, setDate] = useState("");
 
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null);
 
   const [Checkboxvalue, setCheckboxvalue] = useState("");
 
@@ -58,6 +62,30 @@ function Header() {
     setDate("")
     setValue("")
     setCheckboxvalue("")
+  }
+
+  async function insertOnFirebase(e){
+
+    e.preventDefault();
+
+    try{
+
+        await addDoc(collection(db, "gasto"), {
+          expend: parseFloat(value),
+          expendType: Checkboxvalue,
+          date: new Date(date)
+        })
+
+    }catch(err){
+
+      alert(err)
+
+    }
+
+    closeModal();
+    
+    //reloading the page
+    window.location.reload(false)
   }
 
   console.log("aqui é o value: ", value);
@@ -254,7 +282,7 @@ function Header() {
             <CloseIcon fontSize="medium" />
           </button>
 
-          <button onClick={closeModal} className="modal__saveBtn">
+          <button onClick={e=>insertOnFirebase(e)} className="modal__saveBtn">
             <CheckIcon fontSize="medium" />
           </button>
         </div>
