@@ -1,6 +1,10 @@
 import './App.css';
 import Header from './components/Header';
+
+//pages
 import Home from './pages/Home';
+import Food from './pages/Food';
+
 import {Routes, Route} from "react-router-dom"
 
 function App() {
@@ -13,7 +17,7 @@ function App() {
       {/* body page with router -> home e as classificações */}
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/food' element={<h1>Comida</h1>}/>
+        <Route path='/food' element={<Food/>}/>
         <Route path='/pleasure' element={<h1>Lazer</h1>}/>
         <Route path='/investment' element={<h1>investimento</h1>}/>
         <Route path='/transport' element={<h1>transporte</h1>}/>
