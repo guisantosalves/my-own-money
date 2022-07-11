@@ -47,7 +47,7 @@ function Header() {
 
   const [date, setDate] = useState("");
 
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState("");
 
   const [Checkboxvalue, setCheckboxvalue] = useState("");
 
@@ -68,10 +68,13 @@ function Header() {
 
     e.preventDefault();
 
+    //replacing the comma to a dot 
+    const verifyValue = value.replace(/\,/g,'.')
+
     try{
 
         await addDoc(collection(db, "gasto"), {
-          expend: parseFloat(value),
+          expend: parseFloat(verifyValue),
           expendType: Checkboxvalue,
           date: new Date(date),
           deleted: false
