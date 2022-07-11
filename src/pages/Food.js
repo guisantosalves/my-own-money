@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./css/Home.css";
+import "./css/Food.css";
 import Row from "../components/RowExpend";
 
 //chart-react-2
@@ -45,24 +45,24 @@ const options = {
       },
       title: {
         display: true,
-        text: 'Chart.js Bar Chart',
+        text: 'Expend with food',
       },
     },
 }
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const dataChart = {
     labels,
     datasets: [
       {
         label: 'Dataset 1',
-        data: [15, 7, 8, 9, 10, 2, 3],
+        data: [15, 7, 8, 9, 10, 2, 1 ,1, 1, 1, 1, 1],
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
         label: 'Dataset 2',
-        data: [1, 2, 3, 4, 5, 6, 7],
+        data: [1, 2, 3, 4, 5, 6],
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],
@@ -70,8 +70,6 @@ const dataChart = {
 
 function Food() {
   const [data, setData] = useState([]);
-
-  const [{ expend }, dispatch] = useStateValue();
 
   useEffect(() => {
     
@@ -91,17 +89,17 @@ function Food() {
   }, []);
 
   return (
-    <div className="home">
-      <div className="home__left">
-        <div className="home__graphs">
-          <div className="home__leftGraphOne">
+    <div className="food">
+      <div className="food__left">
+        <div className="food__graphs">
+          <div className="food__leftGraphOne">
             <Bar options={options} data={dataChart}/>
           </div>
         </div>
       </div>
 
-      <div className="home__right">
-        <div className="home__rightListOfThings">
+      <div className="food__right">
+        <div className="food__rightListOfThings">
           {data.map((item, index) => (
             <Row
               key={item.id}

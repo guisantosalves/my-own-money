@@ -1,0 +1,30 @@
+.food {
+    display: flex;
+    height: 90vh;
+  }
+  
+  .food__left {
+    flex: 0.6;
+  }
+  
+  .food__graphs {
+    display: flex;
+    padding: 34px;
+  }
+  
+  .food__leftGraphOne {
+    height: 40vh;
+    width: 60vw;
+  }
+  
+  .food__right {
+    flex: 0.4;
+    overflow: scroll;
+  }
+  
+  .food__rightListOfThings {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+  }
+  
