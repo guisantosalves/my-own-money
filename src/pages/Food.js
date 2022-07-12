@@ -4,88 +4,141 @@ import Row from "../components/RowExpend";
 
 //chart-react-2
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 //firebase
-import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore";
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+  where,
+} from "firebase/firestore";
 import { db } from "../firebase";
 
 //getting datalayer
 import { useStateValue } from "../StateProvider";
 
-let somaTransport = 0;
-let somaFood = 0;
-let somaPleasure = 0;
-let somaInvestment = 0;
-let somaOther = 0;
+let somJan = 0;
+let somaFev = 0;
+let somaMar = 0;
+let somaApril = 0;
+let somaMay = 0;
+let somaJune = 0;
+let somaJuly = 0;
+let somaAugust = 0;
+let somaSeptem = 0;
+let somaOct = 0;
+let somaNovem = 0;
+let somaDecem = 0;
 
 //registering the graph
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
 );
 
 const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Expend with food',
-      },
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
     },
-}
+    title: {
+      display: true,
+      text: "Expend with food",
+    },
+  },
+};
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+function Food() {
+  const [data, setData] = useState([]);
+  const labels = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-const dataChart = {
+  const dataChart = {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
-        data: [15, 7, 8, 9, 10, 2, 1 ,1, 1, 1, 1, 1],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: 'Dataset 2',
-        data: [1, 2, 3, 4, 5, 6],
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        label: "Food",
+        data: [somJan, somaFev, somaMar, somaApril, somaMay, somaJune, somaJuly, somaAugust, somaSeptem, somaOct, somaNovem, somaDecem],
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
   };
 
-function Food() {
-  const [data, setData] = useState([]);
-
   useEffect(() => {
-    
-    const qry = query(collection(db, "gasto"), where("expendType", "==", "food"), orderBy('deleted', 'asc'));
+    const qry = query(
+      collection(db, "gasto"),
+      where("expendType", "==", "food"),
+      orderBy("deleted", "asc")
+    );
 
     onSnapshot(qry, (result) => {
+      setData(
+        result.docs.map((item, index) => ({
+          id: item.id,
+          data: item.data(),
+        }))
+      );
 
-        setData(
-          result.docs.map((item, index) => ({
-            id: item.id,
-            data: item.data(),
-          }))
-        );
+      result.docs.map((item, index) => {
+        
+        if (item.data().date.toDate().getMonth() + 1 === 1) {
+            somJan = somJan + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 2){
+            somaFev = somaFev + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 3){
+            somaMar = somaMar + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 4){
+            somaApril = somaApril + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 5){
+            somaMay = somaMay + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 6){
+            somaJune = somaJune + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 7){
+            somaJuly = somaJuly + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 8){
+            somaAugust = somaAugust + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 9){
+            somaSeptem = somaSeptem + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 10){
+            somaOct = somaOct + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 11){
+            somaNovem = somaNovem + item.data().expend;
+        }else if(item.data().date.toDate().getMonth() + 1 === 12){
+            somaDecem = somaDecem + item.data().expend;
+        }else{
+            alert("somthing went wrong")
+        }
 
       });
-    
+
+    });
   }, []);
 
   return (
@@ -93,7 +146,17 @@ function Food() {
       <div className="food__left">
         <div className="food__graphs">
           <div className="food__leftGraphOne">
-            <Bar options={options} data={dataChart}/>
+            <Bar options={options} data={dataChart} />
+          </div>
+          <div className="food__notes">
+            <div className="food__note">
+              <h1>title</h1>
+              <p>type here</p>
+            </div>
+            <div className="food__noteAdd">
+              <h1>title</h1>
+              <p>type here</p>
+            </div>
           </div>
         </div>
       </div>
