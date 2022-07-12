@@ -66,6 +66,8 @@ const options = {
 
 function Food() {
   const [data, setData] = useState([]);
+  const [notes, setNotes] = useState([])
+
   const labels = [
     "January",
     "February",
@@ -140,6 +142,15 @@ function Food() {
       });
 
     });
+
+    const qryNotes = query(collection(db, "notes"))
+
+    onSnapshot(qryNotes, (result)=>{
+      result.docs.map((item, index)=>{
+        console.log(item.data())
+      })
+    })
+
   }, []);
 
   return (
