@@ -69,6 +69,19 @@
     transform: scale(1.03);
   }
 
+  .food__noteClose{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .food__noteText {
+    display: flex;
+    width: 170px;
+    height: 170px;
+    overflow: overlay;
+  }
+
   .food__right {
     flex: 0.4;
     overflow: scroll;

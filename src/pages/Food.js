@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./css/Food.css";
 import Row from "../components/RowExpend";
 import Add from "@mui/icons-material/Add";
+import Close from "@mui/icons-material/Close";
+import { IconButton } from "@mui/material";
 
 //chart-react-2
 import {
@@ -22,6 +24,8 @@ import {
   orderBy,
   onSnapshot,
   where,
+  doc,
+  updateDoc
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -143,15 +147,35 @@ function Food() {
 
     });
 
-    const qryNotes = query(collection(db, "notes"))
+    const qryNotes = query(collection(db, "notes"), where("deleted", "!=", true))
 
     onSnapshot(qryNotes, (result)=>{
-      result.docs.map((item, index)=>{
-        console.log(item.data())
-      })
+
+      setNotes(
+        result.docs.map((item, index)=>({
+          id: item.id,
+          data: item.data()
+        }))
+      )
     })
 
   }, []);
+
+  //function to delete the notes
+  async function deletingNote(item){
+    try{
+      
+      await updateDoc(doc(db, 'notes', item.id), {
+        title: item.data.title,
+        note: item.data.note,
+        timestamp: item.data.timestamp,
+        deleted: true
+      })
+
+    }catch(e){
+      alert(e)
+    }
+  }
 
   return (
     <div className="food">
@@ -161,10 +185,21 @@ function Food() {
             <Bar options={options} data={dataChart} />
           </div>
           <div className="food__notes">
-            <div className="food__note">
-              <h1>To do</h1>
-              <p>Economizar em comida, pois eu preciso emagrecer também</p>
-            </div>
+            {notes.map((item, index)=>(
+              <div className="food__note">
+
+                <div className="food__noteClose">
+                  <IconButton onClick={(e)=>deletingNote(item)}>
+                    <Close fontSize="small"/>
+                  </IconButton>
+                </div>
+                <h1>{item.data.title}</h1>
+                <div className="food__noteText">
+                  <p>{item.data.note}</p>
+                </div>
+
+              </div>
+            ))}
             <div className="food__noteAdd">
               <Add fontSize="large"/>
             </div>

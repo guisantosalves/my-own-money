@@ -23,6 +23,7 @@ let somaOther = 0;
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Home() {
+
   const [data, setData] = useState([]);
 
   const [{ expend }, dispatch] = useStateValue();
