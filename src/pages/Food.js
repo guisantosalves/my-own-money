@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./css/Food.css";
 import Row from "../components/RowExpend";
+import Add from "@mui/icons-material/Add";
 
 //chart-react-2
 import {
@@ -150,12 +151,11 @@ function Food() {
           </div>
           <div className="food__notes">
             <div className="food__note">
-              <h1>title</h1>
-              <p>type here</p>
+              <h1>To do</h1>
+              <p>Economizar em comida, pois eu preciso emagrecer também</p>
             </div>
             <div className="food__noteAdd">
-              <h1>title</h1>
-              <p>type here</p>
+              <Add fontSize="large"/>
             </div>
           </div>
         </div>

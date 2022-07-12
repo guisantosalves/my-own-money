@@ -24,11 +24,13 @@
     height: 30vh;
     width: 60vw;
     overflow: overlay;
-    border: 2px solid #FFE8C2;
+    border: 5px solid #FFE8C2;
     border-radius: 10px;
   }
 
   .food__note{
+    display: flex;
+    flex-direction: column;
     margin: 10px;
     width: 170px;
     height: 170px;
@@ -48,11 +50,23 @@
   }
   
   .food__noteAdd{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 10px;
     width: 170px;
     height: 170px;
     padding: 8px;
     background-color: rgba(162, 103, 105, 0.5);
+
+    /* animation */
+    transition: transform 300ms ease-in;
+    cursor: pointer; 
+  }
+
+  .food__noteAdd:hover{
+    transform: scale(1.03);
   }
 
   .food__right {
