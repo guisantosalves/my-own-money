@@ -7,7 +7,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 //firebase
-import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore";
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+  where,
+} from "firebase/firestore";
 import { db } from "../firebase";
 
 //getting datalayer
@@ -23,15 +29,20 @@ let somaOther = 0;
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Home() {
-
   const [data, setData] = useState([]);
 
   const [{ expend }, dispatch] = useStateValue();
 
+  const [verify, setVerify] = useState(0);
   useEffect(() => {
     //collection, where, orderby
-    const qry = query(collection(db, "gasto"), where("deleted", "!=", true), orderBy('deleted', 'asc'));
+    const qry = query(
+      collection(db, "gasto"),
+      where("deleted", "!=", true),
+      orderBy("deleted", "asc")
+    );
 
+    //to the rows
     onSnapshot(qry, (result) => {
       setData(
         result.docs.map((item, index) => ({
@@ -44,23 +55,32 @@ function Home() {
         type: "SET_EXPENDS",
         expend: data,
       });
-
-      result.docs.map((element, index) => {
-        if (element.data().expendType === "transport") {
-          somaTransport += element.data().expend;
-        } else if (element.data().expendType === "food") {
-          somaFood += element.data().expend;
-        } else if (element.data().expendType === "pleasure") {
-          somaPleasure += element.data().expend;
-        } else if (element.data().expendType === "investment") {
-          somaInvestment += element.data().expend;
-        } else if (element.data().expendType === "other") {
-          somaOther += element.data().expend;
-        } else {
-          console.log("something went wrong");
-        }
+    })
+    
+    //to the graphs
+    if(somaTransport === 0){
+      onSnapshot(qry, (result) => { 
+        result.docs.map((element, index) => {
+          if (element.data().expendType === "transport") {
+            somaTransport += element.data().expend;
+          } else if (element.data().expendType === "food") {
+            somaFood += element.data().expend;
+          } else if (element.data().expendType === "pleasure") {
+            somaPleasure += element.data().expend;
+          } else if (element.data().expendType === "investment") {
+            somaInvestment += element.data().expend;
+          } else if (element.data().expendType === "other") {
+            somaOther += element.data().expend;
+          } else {
+            console.log("something went wrong");
+          }
+        });
+  
       });
-    });
+    }else{
+      return
+    }
+
   }, []);
 
   const datachart = {
@@ -68,7 +88,13 @@ function Home() {
     datasets: [
       {
         label: "# of Votes",
-        data: [somaFood, somaTransport, somaPleasure, somaInvestment, somaOther],
+        data: [
+          somaFood,
+          somaTransport,
+          somaPleasure,
+          somaInvestment,
+          somaOther,
+        ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -90,7 +116,7 @@ function Home() {
     ],
   };
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div className="home">

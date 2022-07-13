@@ -133,7 +133,7 @@ function Food() {
       where("expendType", "==", "food"),
       orderBy("deleted", "asc")
     );
-
+    //to the rows
     onSnapshot(qry, (result) => {
       setData(
         result.docs.map((item, index) => ({
@@ -141,43 +141,47 @@ function Food() {
           data: item.data(),
         }))
       );
+    })
 
-      result.docs.map((item, index) => {
-        
-        if (item.data().date.toDate().getMonth() + 1 === 1) {
-            somJan = somJan + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 2){
-            somaFev = somaFev + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 3){
-            somaMar = somaMar + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 4){
-            somaApril = somaApril + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 5){
-            somaMay = somaMay + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 6){
-            somaJune = somaJune + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 7){
-            somaJuly = somaJuly + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 8){
-            somaAugust = somaAugust + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 9){
-            somaSeptem = somaSeptem + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 10){
-            somaOct = somaOct + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 11){
-            somaNovem = somaNovem + item.data().expend;
-        }else if(item.data().date.toDate().getMonth() + 1 === 12){
-            somaDecem = somaDecem + item.data().expend;
-        }else{
-            alert("somthing went wrong")
-        }
-
+    //to the graphs
+    if(somaJuly === 0){
+      onSnapshot(qry, (result) => {
+        result.docs.map((item, index) => {
+          if (item.data().date.toDate().getMonth() + 1 === 1) {
+              somJan = somJan + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 2){
+              somaFev = somaFev + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 3){
+              somaMar = somaMar + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 4){
+              somaApril = somaApril + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 5){
+              somaMay = somaMay + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 6){
+              somaJune = somaJune + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 7){
+              somaJuly = somaJuly + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 8){
+              somaAugust = somaAugust + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 9){
+              somaSeptem = somaSeptem + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 10){
+              somaOct = somaOct + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 11){
+              somaNovem = somaNovem + item.data().expend;
+          }else if(item.data().date.toDate().getMonth() + 1 === 12){
+              somaDecem = somaDecem + item.data().expend;
+          }else{
+              alert("somthing went wrong")
+          }
+        });
       });
+    }else{
+      return
+    }
 
-    });
-
+    //to the notes
     const qryNotes = query(collection(db, "notes"), where("deleted", "!=", true))
-
     onSnapshot(qryNotes, (result)=>{
 
       setNotes(
@@ -218,7 +222,7 @@ function Food() {
 
       setTitle("")
       setNote("")
-      
+
       handleClose()
     }catch(e){
       alert(e)
