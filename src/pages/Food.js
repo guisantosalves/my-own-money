@@ -28,7 +28,9 @@ import {
   onSnapshot,
   where,
   doc,
-  updateDoc
+  updateDoc,
+  addDoc,
+  Timestamp,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -79,11 +81,12 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  borderRadius: 10
 };
 
 function Food() {
@@ -91,6 +94,8 @@ function Food() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [title, setTitle] = useState("");
+  const [note, setNote] = useState("");
 
   //data to the app
   const [data, setData] = useState([]);
@@ -201,6 +206,24 @@ function Food() {
     }
   }
 
+  async function submitNotes(){
+    try{
+
+      await addDoc(collection(db, "notes"), {
+        title: title,
+        note: note,
+        timestamp: Timestamp.now(),
+        deleted: false
+      })
+
+      setTitle("")
+      setNote("")
+      
+      handleClose()
+    }catch(e){
+      alert(e)
+    }
+  }
   return (
     <div className="food">
       <div className="food__left">
@@ -250,16 +273,39 @@ function Food() {
 
       <Modal
         open={open}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            Set your goals
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            <div className="modal__form">
+              <h2>Title: </h2>
+              <div className="modal__title">
+                <input 
+                  type="text" 
+                  value={title} 
+                  onChange={(e)=>setTitle(e.target.value)} 
+                  placeholder="Ex: to do"
+                />
+              </div>
+
+              <h2>Note: </h2>
+              <div className="modal__note">
+                <input 
+                  type="text" 
+                  value={note} 
+                  onChange={(e)=>setNote(e.target.value)} 
+                  placeholder="Ex: I need to buy more food"
+                />
+              </div>
+            </div>
+            <div className="modal__buttons">
+              <button className="modal__btnOne" onClick={handleClose}>Close</button>
+              <button className="modal__btnTwo" onClick={submitNotes}>Save</button>
+            </div>
           </Typography>
         </Box>
       </Modal>
