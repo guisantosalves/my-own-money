@@ -7,12 +7,15 @@ import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import Close from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 //firebase
 import { db } from "../firebase";
 import { updateDoc, doc } from "firebase/firestore";
 
 function Row({ id, expend, expendType, timestamp, deleted }) {
+
+  const navigate = useNavigate();
 
   async function gettingID(e){
     e.preventDefault();
@@ -27,6 +30,7 @@ function Row({ id, expend, expendType, timestamp, deleted }) {
         deleted: true,
       })
 
+      navigate('/')
     }catch(err){
       alert(err)
     }
