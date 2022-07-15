@@ -7,8 +7,10 @@ import Food from './pages/Food';
 import Pleasure from './pages/Pleasure';
 import Investment from './pages/Investment';
 import Transport from './pages/Transport';
+import Other from './pages/Other';
 
 import {Routes, Route} from "react-router-dom"
+
 
 function App() {
   return (
@@ -24,7 +26,7 @@ function App() {
         <Route path='/pleasure' element={<Pleasure />}/>
         <Route path='/investment' element={<Investment />}/>
         <Route path='/transport' element={<Transport />}/>
-        <Route path='/other' element={<h1>outros</h1>}/>
+        <Route path='/other' element={<Other />}/>
       </Routes>
     
     </div>
