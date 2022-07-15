@@ -1,0 +1,153 @@
+.investment {
+    display: flex;
+    height: 90vh;
+  }
+  
+  .investment__left {
+    flex: 0.6;
+  }
+  
+  .investment__graphs {
+    display: flex;
+    flex-direction: column;
+    padding: 34px;
+  }
+  
+  .investment__leftGraphOne {
+    height: 55vh;
+    width: 60vw;
+    
+  }
+
+  .investment__notes{
+    display: flex;
+    height: 25vh;
+    width: 60vw;
+    overflow: overlay;
+    border: 5px solid #FFE8C2;
+    border-radius: 10px;
+  }
+
+  .investment__note{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 170px;
+    height: 140px;
+    padding: 8px;
+    background-color: #FFFBDB;
+    border-radius: 10px;
+
+    /* animation */
+    transition: transform 300ms ease-in;
+    cursor: pointer;
+  }
+
+  .investment__note:hover{
+    transform: scale(1.03);
+    background-color: #FFFBDB;
+    background-image:linear-gradient(to bottom, #ECE2D0 0%, #D5B9B2 40%, #A26769 100%);  
+    
+  }
+  
+  .investment__noteAdd{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 170px;
+    height: 140px;
+    padding: 8px;
+    background-color: rgba(162, 103, 105, 0.5);
+    border-radius: 10px;
+
+    /* animation */
+    transition: transform 300ms ease-in;
+    cursor: pointer; 
+  }
+
+  .investment__noteAdd:hover{
+    transform: scale(1.03);
+  }
+
+  .investment__noteClose{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .investment__noteText {
+    display: flex;
+    width: 170px;
+    height: 170px;
+    overflow: overlay;
+  }
+
+  .investment__right {
+    flex: 0.4;
+    overflow: scroll;
+  }
+  
+  .investment__rightListOfThings {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .modal__form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal__title {
+    padding: 5px;
+    border-radius: 999px;
+    background-color: #73A6AD;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .modal__title > input {
+    width: 95%;
+    background-color: #73A6AD;
+    outline: none;
+    border: none;
+  }
+
+  .modal__note {
+    padding: 5px;
+    border-radius: 999px;
+    background-color: #73A6AD;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .modal__note > input {
+    width: 95%;
+    background-color: #73A6AD;
+    outline: none;
+    border: none;
+  }
+
+  .modal__buttons{
+    display: flex;
+  }
+
+  .modal__btnOne{
+    background-color: #e11937;
+    color: white;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+  }
+
+  .modal__btnTwo{
+    background-color: #D8A7CA;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    font-weight: bold;
+  }
