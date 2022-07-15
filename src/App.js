@@ -4,6 +4,7 @@ import Header from './components/Header';
 //pages
 import Home from './pages/Home';
 import Food from './pages/Food';
+import Pleasure from './pages/Pleasure';
 
 import {Routes, Route} from "react-router-dom"
 
@@ -18,7 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/food' element={<Food/>}/>
-        <Route path='/pleasure' element={<h1>Lazer</h1>}/>
+        <Route path='/pleasure' element={<Pleasure />}/>
         <Route path='/investment' element={<h1>investimento</h1>}/>
         <Route path='/transport' element={<h1>transporte</h1>}/>
         <Route path='/other' element={<h1>outros</h1>}/>

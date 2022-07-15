@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./css/Food.css";
+import "./css/Pleasure.css";
 import Row from "../components/RowExpend";
 import Add from "@mui/icons-material/Add";
 import Close from "@mui/icons-material/Close";
@@ -71,7 +71,7 @@ const options = {
     },
     title: {
       display: true,
-      text: "Expend with food",
+      text: "Expend with pleasure",
     },
   },
 };
@@ -90,7 +90,7 @@ const style = {
   borderRadius: 10
 };
 
-function Food() {
+function Pleasure() {
   //data to the modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -121,7 +121,7 @@ function Food() {
     labels,
     datasets: [
       {
-        label: "Food",
+        label: "Pleasure",
         data: [somJan, somaFev, somaMar, somaApril, somaMay, somaJune, somaJuly, somaAugust, somaSeptem, somaOct, somaNovem, somaDecem],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
@@ -131,7 +131,7 @@ function Food() {
   useEffect(() => {
     const qry = query(
       collection(db, "gasto"),
-      where("expendType", "==", "food"),
+      where("expendType", "==", "pleasure"),
       orderBy("deleted", "asc")
     );
     //to the rows
@@ -228,29 +228,29 @@ function Food() {
     }
   }
   return (
-    <div className="food">
-      <div className="food__left">
-        <div className="food__graphs">
-          <div className="food__leftGraphOne">
+    <div className="pleasure">
+      <div className="pleasure__left">
+        <div className="pleasure__graphs">
+          <div className="pleasure__leftGraphOne">
             <Bar options={options} data={dataChart} />
           </div>
-          <div className="food__notes">
+          <div className="pleasure__notes">
             {notes.map((item, index)=>(
-              <div className="food__note">
+              <div className="pleasure__note">
 
-                <div className="food__noteClose">
+                <div className="pleasure__noteClose">
                   <IconButton onClick={(e)=>deletingNote(item)}>
                     <Close fontSize="small"/>
                   </IconButton>
                 </div>
                 <h1>{item.data.title}</h1>
-                <div className="food__noteText">
+                <div className="pleasure__noteText">
                   <p>{item.data.note}</p>
                 </div>
 
               </div>
             ))}
-            <div className="food__noteAdd">
+            <div className="pleasure__noteAdd">
               <IconButton onClick={handleOpen}>
                 <Add fontSize="large"/>
               </IconButton>
@@ -259,8 +259,8 @@ function Food() {
         </div>
       </div>
 
-      <div className="food__right">
-        <div className="food__rightListOfThings">
+      <div className="pleasure__right">
+        <div className="pleasure__rightListOfThings">
           {data.map((item, index) => (
             <Row
               key={item.id}
@@ -301,7 +301,7 @@ function Food() {
                   type="text" 
                   value={note} 
                   onChange={(e)=>setNote(e.target.value)} 
-                  placeholder="Ex: I need to buy more food"
+                  placeholder="Ex: I need to buy more pleasure"
                 />
               </div>
             </div>
@@ -316,4 +316,4 @@ function Food() {
   );
 }
 
-export default Food;
+export default Pleasure;
