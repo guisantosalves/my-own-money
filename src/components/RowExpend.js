@@ -62,7 +62,7 @@ function Row({ id, expend, expendType, timestamp, deleted }) {
   return (
     <div className="row">
       <div className="row__left">
-        <h2>Value: {expend}</h2>
+        <h2>R$ {expend}</h2>
         <p>Type of expense: {expendType}</p>
       </div>
 
