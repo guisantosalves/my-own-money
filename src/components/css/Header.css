@@ -174,3 +174,27 @@ hr {
 .modal__datePicker > input{
     padding: 8px;
 }
+
+@media screen and (max-width: 500px){
+ .header__center{
+    flex-direction: column;
+    position: absolute;
+    margin-top: 400px;
+    background-color: #af5d4a;
+    width: 150px;
+    align-items: center;
+    margin-right: 100px;
+    border-radius: 20px;
+    }
+ .buttonActiveByPath{
+    border-radius: 0;
+ }
+
+  .header__centerBtn{
+    width: inherit;
+  }
+}
+
+.hideMenu{
+    display: none;
+}

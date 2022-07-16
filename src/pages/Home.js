@@ -34,6 +34,11 @@ function Home() {
   const [{ expend }, dispatch] = useStateValue();
 
   const [verify, setVerify] = useState(0);
+
+  const [hideGraph, setHideGraph] = useState(false)
+
+  const widthOfScreen = window.innerWidth;
+
   useEffect(() => {
     //collection, where, orderby
     const qry = query(
@@ -116,11 +121,21 @@ function Home() {
     ],
   };
 
-  console.log(data);
+  function hideGraphfun(){
+    setHideGraph(false)
+  }
+
+  function showGraph(){
+    setHideGraph(true)
+  }
 
   return (
     <div className="home">
-      <div className="home__left">
+      {widthOfScreen <= 500 ? <div className="optionMobile">
+        <button className="Btn__graph" onClick={hideGraphfun}>Graph</button>
+        <button className="Btn__row" onClick={showGraph}>Row</button>
+      </div> : <></>}
+      <div className={`home__left ${hideGraph ? `hide`:``}`}>
         <div className="home__graphs">
           <div className="home__leftGraphOne">
             <Doughnut

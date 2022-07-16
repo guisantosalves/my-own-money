@@ -16,6 +16,7 @@ import { Checkbox } from "@mui/material";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import MenuIcon from '@mui/icons-material/Menu';
 
 //router and modal
 import { Link } from "react-router-dom";
@@ -52,10 +53,20 @@ function Header() {
 
   const [Checkboxvalue, setCheckboxvalue] = useState("");
 
+  const [hideMenu, setHideMenu] = useState(false);
+
+  const widthOfScreen = window.innerWidth;
+
+  function hideMenuCenter(){
+    setHideMenu(!hideMenu);
+  }
+
+  //modal
   function openModal() {
     setIsOpen(true);
   }
 
+  //modal
   function closeModal() {
     setIsOpen(false);
 
@@ -65,6 +76,7 @@ function Header() {
     setCheckboxvalue("")
   }
 
+  //insert on firebase
   async function insertOnFirebase(e){
 
     e.preventDefault();
@@ -93,9 +105,6 @@ function Header() {
     window.location.reload(false)
   }
 
-  console.log("aqui é o value: ", value);
-  console.log("aqui é o type of checkbox: ", Checkboxvalue);
-  console.log("aqui é a data: ", date)
   return (
     <div className="header">
       <div className="header__left">
@@ -110,7 +119,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="header__center">
+      <div className={`header__center ${hideMenu ? `hideMenu` : ``}`}>
         <Link to="/">
           <button
             className={`header__centerBtn ${
@@ -185,6 +194,10 @@ function Header() {
       </div>
 
       <div className="header_right">
+        {widthOfScreen <= 500 ? 
+        <IconButton>
+          <MenuIcon fontSize="large" onClick={hideMenuCenter}/>
+        </IconButton> : <></>}
         <IconButton onClick={openModal}>
           <AddIcon fontSize="large" />
         </IconButton>
