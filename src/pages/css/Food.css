@@ -26,6 +26,7 @@
     overflow: overlay;
     border: 5px solid #FFE8C2;
     border-radius: 10px;
+    flex-wrap: wrap;
   }
 
   .food__note{
